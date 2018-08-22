@@ -27,8 +27,8 @@ Notice that when running with 2 nodes at the 100MB message size, Derecho’s pea
 exceeds 12.5 GB/s. This is because the network is bidirectional, and in theory could support a data
 rate of 25GB/s with full concurrent loads. With our servers, the NIC cannot reach this full speed
 because of limited bandwidth to the host memory units.
+
 ## Throughput
-</P>
 <table>
  <tr>
   <td>
