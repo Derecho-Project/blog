@@ -1,8 +1,34 @@
 # Derecho with Libfabric
 [OFI Libfabric](https://ofiwg.github.io/libfabric/) is a **remote direct memory access (RDMA)** communication library. It unifies the distinct programming APIs of different RDMA hardware with a thin layer. We are working on Derecho porting to libfabric so that it can support applications in more environments. Specifically, libfabric can work on TCP/IP network without special RDMA hardware, making Derecho available to almost all cloud application.
 
+<P>
+We measures Derecho performance on 2 to 16 nodes on Fractus (a local cluster at Cornell). The experiment constructs a
+single subgroup containing all nodes. Each of the sender nodes sends a fixed number of messages
+(of a given message size) and time is measured from the start of sending to the delivery of the
+last message. Bandwidth is then the aggregated rate of sending of the sender nodes. We plot the
+throughput and latency for fast totally ordered (atomic multicast) mode.
+<P>
+In Figure 1a, we see that Derecho performs close to network speeds for large message sizes of 1 and 100 MB,
+with a peak rate of 16 GB/s. In raw mode, Derecho’s protocol for sending small messages, SMC,
+ensures that we get high performance (close to 8 GB/s) for the 10 KB message size; we lose about
+half the peak rate in our totally-ordered atomic multicast. As expected, increasing the number of
+senders leads to a better utilization of the network, resulting in better bandwidth. For the large
+message sizes, the time to send the message dominates the time to coordinate between the nodes for
+delivery, and thus unreliable mode and fast totally ordered (atomic multicast) mode achieve similar
+performance6. For small message sizes (10 KB), those two times are comparable. Here, unreliable
+mode has a slight advantage because it does not perform global stability detection prior to message
+delivery.
+<P>
+Not shown is the delivery batch size; at peak rates, multicasts are delivered in small batches,
+usually the same size as the number of active senders, although now and then a slightly smaller
+or larger batch arises.
+<P>
+Notice that when running with 2 nodes at the 100MB message size, Derecho’s peak performance
+exceeds 12.5 GB/s. This is because the network is bidirectional, and in theory could support a data
+rate of 25GB/s with full concurrent loads. With our servers, the NIC cannot reach this full speed
+because of limited bandwidth to the host memory units.
 ## Throughput
-We tested the derecho atomic broadcast throughput with various hardware. (Explanation to be added later.)
+</P>
 <table>
  <tr>
   <td>
