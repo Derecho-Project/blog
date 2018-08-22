@@ -1,4 +1,7 @@
 # NEWS
+## 21-Aug-2018: Derecho Libfabric is Merging to master.
+We are working on the merge of libfabric and master branch. An initial merge is available in master. Please do not use that version until merge is finalized. We also updated the [document](https://github.com/Derecho-Project/blog/blob/master/docs/libfabric.md) to show the performance comparisons against existing systems.
+
 ## 28-Jun-2018: Geo-Distributed Derecho Roadmap.
 In the next couple of months, we plan to try Derecho in geographically distributed environment.
 1) Testing Derecho + libfabric/TCP in wide area network.
