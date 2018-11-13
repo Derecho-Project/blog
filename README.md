@@ -1,4 +1,10 @@
 # NEWS
+## 13-Nov-2018: Many improvements
+commit: ba8e0e11528812ee97737c4d3f433ed4a11122a1
+- Derecho now supports running multiple instances in a same OS
+- Improved recovery code
+- Added object store
+
 ## 21-Aug-2018: Derecho Libfabric is Merging to master.
 We are working on the merge of libfabric and master branch. An initial merge is available in master. Please do not use that version until merge is finalized. We also updated the [document](https://github.com/Derecho-Project/blog/blob/master/docs/libfabric.md) to show the performance comparisons against existing systems.
 
